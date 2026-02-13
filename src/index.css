@@ -1,0 +1,119 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 10%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 10%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 10%;
+
+    /* Maroon - Deep sophistication */
+    --primary: 0 97% 18%;
+    --primary-foreground: 0 0% 100%;
+
+    /* Gold - Luminous elegance */
+    --gold: 45 65% 53%;
+    --gold-foreground: 0 0% 10%;
+    
+    /* Light mode refined neutrals */
+    --secondary: 0 0% 96%;
+    --secondary-foreground: 0 0% 10%;
+
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 45%;
+
+    --accent: 45 65% 53%;
+    --accent-foreground: 0 0% 10%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 0 0% 90%;
+    --input: 0 0% 90%;
+    --ring: 45 65% 53%;
+
+    --radius: 0.5rem;
+
+    /* Shadows and glows */
+    --shadow-elegant: 0 10px 40px -10px hsl(0 97% 18% / 0.2);
+    --shadow-gold: 0 8px 32px -8px hsl(45 65% 53% / 0.3);
+    --glow-gold: 0 0 40px hsl(45 65% 53% / 0.4);
+  }
+
+  .dark {
+    /* Deep graphite luxury */
+    --background: 0 0% 10%;
+    --foreground: 0 0% 98%;
+
+    --card: 0 0% 12%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 0 0% 12%;
+    --popover-foreground: 0 0% 98%;
+
+    /* Maroon glows in darkness */
+    --primary: 0 90% 25%;
+    --primary-foreground: 0 0% 100%;
+
+    /* Gold luminescence */
+    --gold: 45 70% 58%;
+    --gold-foreground: 0 0% 10%;
+
+    --secondary: 0 0% 16%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 0 0% 16%;
+    --muted-foreground: 0 0% 65%;
+
+    --accent: 45 70% 58%;
+    --accent-foreground: 0 0% 10%;
+
+    --destructive: 0 62% 40%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 0 0% 20%;
+    --input: 0 0% 20%;
+    --ring: 45 70% 58%;
+
+    /* Enhanced shadows for dark mode */
+    --shadow-elegant: 0 10px 40px -10px hsl(0 0% 0% / 0.5);
+    --shadow-gold: 0 8px 32px -8px hsl(45 70% 58% / 0.4);
+    --glow-gold: 0 0 50px hsl(45 70% 58% / 0.5);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-inter;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-playfair;
+  }
+}
+
+@layer utilities {
+  /* Smooth transitions for theme switching */
+  .theme-transition {
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+  }
+}
