@@ -29,13 +29,6 @@ export function Footer() {
                   className="h-24 w-24 object-contain"
                 />
               )}
-              {!currentProperty.hideExtraImage && (
-                <img
-                  src={currentProperty.image}
-                  alt={currentProperty.name}
-                  className="h-16 w-24 object-cover rounded-md shadow-sm border border-border"
-                />
-              )}
             </div>
             <h3 className="font-playfair text-2xl font-bold text-foreground mb-2">
               {currentProperty.name}
