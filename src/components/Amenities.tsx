@@ -1,4 +1,4 @@
-import { Wifi, Waves, ChefHat, Tv, Mountain, Trees, WashingMachine, Car, Building, Sparkles, Lock, Dog, Dumbbell, Gamepad2 } from "lucide-react";
+import { Wifi, Waves, ChefHat, Tv, Mountain, Trees, WashingMachine, Car, Building, Sparkles, Lock, Dog, Dumbbell, Gamepad2, ShieldCheck, PartyPopper } from "lucide-react";
 
 const amenities = [
   { icon: ChefHat, label: "500 ft² Kitchen" },
@@ -16,6 +16,9 @@ const amenities = [
   { icon: Dumbbell, label: "Gym Access" },
   { icon: Gamepad2, label: "Pool Table" },
   { icon: Gamepad2, label: "Foosball Table" },
+  { icon: ChefHat, label: "Chef Services" },
+  { icon: ShieldCheck, label: "24/7 CCTV Surveillance" },
+  { icon: PartyPopper, label: "Terrace Space - Party - Meeting / Conference Rooms" },
 ];
 
 export function Amenities() {

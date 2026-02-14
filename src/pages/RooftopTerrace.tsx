@@ -409,7 +409,7 @@ const RooftopTerrace = () => {
             </div>
             <div>
               <h3 className="font-playfair text-xl font-bold text-foreground mb-1">Your Host</h3>
-              <p className="text-foreground font-medium">Sunil Kumar <span className="text-muted-foreground font-normal">• Co-host: LookAround</span></p>
+              <p className="text-foreground font-medium">Sunil Reddy <span className="text-muted-foreground font-normal">• Co-host: LookAround</span></p>
               <div className="mt-3 space-y-1 text-sm text-muted-foreground">
                 <p>⭐ 4.84/5 rating • 50+ reviews</p>
                 <p>💬 100% response rate • Within 1 hour</p>

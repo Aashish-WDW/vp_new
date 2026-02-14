@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { ArrowLeft, Star, Users, BedDouble, Bath, MapPin, Wifi, Tv, Car, Trees, ChevronDown, ChevronRight, Phone, Mail, Clock, Shield, Dog, Lock, Sparkles, WashingMachine, Utensils, Building, X, Dumbbell, Gamepad2 } from "lucide-react";
+import { ArrowLeft, Star, Users, BedDouble, Bath, MapPin, Wifi, Tv, Car, Trees, ChevronDown, ChevronRight, Phone, Mail, Clock, Shield, Dog, Lock, Sparkles, WashingMachine, Utensils, Building, X, Dumbbell, Gamepad2, ShieldCheck, PartyPopper, ChefHat } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { ThemeToggle } from "@/components/ThemeToggle";
@@ -29,10 +29,13 @@ const amenities = [
   { icon: Sparkles, label: "Daily Housekeeping" },
   { icon: Lock, label: "Smart Lock Self Check-in" },
   { icon: Dog, label: "Pet-Friendly" },
-  { icon: Utensils, label: "Kitchen (Microwave/Fridge)" },
+  { icon: Utensils, label: "Kitchen" },
   { icon: Dumbbell, label: "Gym Access" },
   { icon: Gamepad2, label: "Pool Table" },
   { icon: Gamepad2, label: "Foosball Table" },
+  { icon: ChefHat, label: "Chef Services" },
+  { icon: ShieldCheck, label: "24/7 CCTV Surveillance" },
+  { icon: PartyPopper, label: "Terrace Space - Party / Meeting / Conference Rooms" },
 ];
 
 const spaces = [
@@ -96,7 +99,6 @@ const WhitefieldProperty = () => {
 
           <div className="flex flex-wrap items-center justify-center gap-4 mb-10 animate-fade-in">
             {[
-              { icon: Star, text: "4.89", sub: "37 reviews" },
               { icon: Users, text: "8", sub: "guests" },
               { icon: BedDouble, text: "4", sub: "bedrooms" },
               { icon: Bath, text: "4", sub: "bathrooms" },
@@ -184,7 +186,7 @@ const WhitefieldProperty = () => {
                     <Users className="h-6 w-6 text-gold" />
                   </div>
                   <div>
-                    <p className="font-semibold text-foreground">Sunil Kumar</p>
+                    <p className="font-semibold text-foreground">Sunil Reddy</p>
                     <p className="text-xs text-muted-foreground">Co-host: LookAround</p>
                   </div>
                 </div>
