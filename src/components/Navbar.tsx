@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import { Menu, X, ChevronDown, Building2 } from "lucide-react";
+import { Menu, X, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import logo from "@/assets/logo.png";
 
@@ -127,34 +127,38 @@ export function Navbar({ propertyPage }: NavbarProps) {
                 onMouseLeave={() => setIsPropertySwitcherOpen(false)}
               >
                 <button
-                  className={`flex items-center gap-1 p-1.5 rounded-md transition-colors ${isScrolled ? "hover:bg-gold/10 text-foreground" : "hover:bg-white/10 text-white dark:text-foreground"
+                  className={`flex items-center gap-2 px-3 py-1.5 rounded-full border transition-all duration-300 ${isScrolled
+                    ? "border-gold/30 hover:border-gold hover:bg-gold/5 text-foreground"
+                    : "border-white/30 hover:border-white hover:bg-white/10 text-white dark:text-foreground"
                     }`}
                   onClick={() => setIsPropertySwitcherOpen((p) => !p)}
                   aria-label="Switch property"
                 >
-                  <Building2 className="h-4 w-4" />
-                  <ChevronDown className="h-3 w-3" />
+                  <span className="text-xs font-semibold uppercase tracking-wider">Explore More</span>
+                  <ChevronDown className={`h-3 w-3 transition-transform duration-300 ${isPropertySwitcherOpen ? "rotate-180" : ""}`} />
                 </button>
 
                 {isPropertySwitcherOpen && (
-                  <div className="absolute left-0 mt-0 w-64 bg-background/95 backdrop-blur-md border border-border rounded-lg shadow-lg py-2 z-50">
-                    <p className="px-4 py-1.5 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">Our Properties</p>
-                    {properties.map((property) => (
-                      <button
-                        key={property.path}
-                        onClick={() => {
-                          navigate(property.path);
-                          setIsPropertySwitcherOpen(false);
-                        }}
-                        className={`block w-full text-left px-4 py-2.5 transition-colors duration-300 ${currentPath === property.path
-                          ? "bg-gold/10 text-gold"
-                          : "text-foreground hover:text-gold hover:bg-gold/10"
-                          }`}
-                      >
-                        <span className="text-sm font-medium block">{property.name}</span>
-                        <span className="text-xs text-muted-foreground">{property.subtitle}</span>
-                      </button>
-                    ))}
+                  <div className="absolute left-0 pt-2 w-64 z-50 animate-fade-in">
+                    <div className="bg-background/95 backdrop-blur-md border border-border rounded-xl shadow-elegant py-3">
+                      <p className="px-4 pb-2 text-[10px] font-bold uppercase tracking-widest text-gold">Other Properties</p>
+                      {properties.filter(p => p.path !== currentPath).map((property) => (
+                        <button
+                          key={property.path}
+                          onClick={() => {
+                            navigate(property.path);
+                            setIsPropertySwitcherOpen(false);
+                          }}
+                          className={`block w-full text-left px-4 py-2.5 transition-colors duration-300 ${currentPath === property.path
+                            ? "bg-gold/10 text-gold"
+                            : "text-foreground hover:text-gold hover:bg-gold/10"
+                            }`}
+                        >
+                          <span className="text-sm font-medium block">{property.name}</span>
+                          <span className="text-xs text-muted-foreground">{property.subtitle}</span>
+                        </button>
+                      ))}
+                    </div>
                   </div>
                 )}
               </div>
@@ -236,20 +240,24 @@ export function Navbar({ propertyPage }: NavbarProps) {
               {/* Property Switcher in Mobile */}
               <p className="px-4 pt-2 pb-1 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">Properties</p>
               {properties.map((property) => (
-                <button
-                  key={property.path}
-                  onClick={() => {
-                    navigate(property.path);
-                    setIsMobileMenuOpen(false);
-                  }}
-                  className={`block w-full text-left px-4 py-2.5 rounded-md transition-colors ${currentPath === property.path
-                    ? "bg-gold/10 text-gold"
-                    : "text-foreground hover:text-gold hover:bg-gold/10"
-                    }`}
-                >
-                  <span className="text-sm font-medium">{property.name}</span>
-                  <span className="text-xs text-muted-foreground ml-2">{property.subtitle}</span>
-                </button>
+                currentPath === property.path ? (
+                  <div key={property.path} className="block w-full text-left px-4 py-2.5 rounded-md bg-gold/5 text-gold">
+                    <span className="text-sm font-bold">{property.name}</span>
+                    <span className="text-[10px] uppercase tracking-wider opacity-70 ml-2">(Current)</span>
+                  </div>
+                ) : (
+                  <button
+                    key={property.path}
+                    onClick={() => {
+                      navigate(property.path);
+                      setIsMobileMenuOpen(false);
+                    }}
+                    className="block w-full text-left px-4 py-2.5 rounded-md text-foreground hover:text-gold hover:bg-gold/10 transition-colors"
+                  >
+                    <span className="text-sm font-medium">{property.name}</span>
+                    <span className="text-xs text-muted-foreground ml-2">{property.subtitle}</span>
+                  </button>
+                )
               ))}
 
               <div className="border-t border-border my-2" />

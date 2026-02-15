@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, lazy, Suspense } from "react";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
@@ -9,16 +9,18 @@ import {
   Sparkles, Lightbulb, Armchair, Zap, Droplets, Wifi, Music,
   Camera, UtensilsCrossed, IceCreamCone, Flame, Thermometer,
   Shield, Car, Gift, Theater, ClipboardList, Phone, Mail,
-  ChevronRight, X, Star, PartyPopper, MapPin, Gamepad2
+  ChevronRight, X, Star, PartyPopper, MapPin, Gamepad2, BookOpen
 } from "lucide-react";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import classImage from "@/assets/class.jpg";
 
 import heroImage from "@/assets/terracemain.jpg";
-import nightImage from "@/assets/movie.png";
-import bbqImage from "@/assets/yoga.png";
-import diningImage from "@/assets/happy.png";
-import loungeImage from "@/assets/class.jpg";
+import nightImage from "@/assets/rooftop-night.jpg";
+import bbqImage from "@/assets/rooftop-bbq.jpg";
+import diningImage from "@/assets/rooftop-dining.jpg";
+import loungeImage from "@/assets/rooftop-lounge.jpg";
 import cookingImage from "@/assets/cooking.jpg";
-import { PropertyMap } from "@/components/PropertyMap";
+const PropertyMap = lazy(() => import("@/components/PropertyMap").then(m => ({ default: m.PropertyMap })));
 
 const primaryFeatures = [
   { icon: Eye, label: "Panoramic City Views", desc: "Stunning 360-degree vistas of Whitefield skyline" },
@@ -421,7 +423,9 @@ const RooftopTerrace = () => {
       </section>
 
       {/* Location & Nearby */}
-      <PropertyMap />
+      <Suspense fallback={<div className="h-[400px] flex items-center justify-center bg-secondary/30">Loading map...</div>}>
+        <PropertyMap />
+      </Suspense>
 
       {/* Contact / Booking CTA */}
       <section id="contact" className="relative py-24 px-4 overflow-hidden">
@@ -454,19 +458,36 @@ const RooftopTerrace = () => {
               <Mail className="h-5 w-5" /> <span>sukis.whitefield@gmail.com</span>
             </a>
           </div>
-          <Button
-            size="lg"
-            className="bg-gold text-background hover:bg-gold/90 font-medium text-lg px-12 py-6"
-            onClick={() => {
-              const phone = "919390631008";
-              const message = encodeURIComponent(
-                "Hi, I want to know more about Terrace Canvas."
-              );
-              window.open(`https://wa.me/${phone}?text=${message}`, "_blank");
-            }}
-          >
-            Book on WhatsApp
-          </Button>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <Button
+              size="lg"
+              className="bg-gold text-background hover:bg-gold/90 font-medium text-lg px-12 py-6 w-full sm:w-auto"
+              onClick={() => {
+                const phone = "919390631008";
+                const message = encodeURIComponent(
+                  "Hi, I want to know more about Terrace Canvas."
+                );
+                window.open(`https://wa.me/${phone}?text=${message}`, "_blank");
+              }}
+            >
+              Book on WhatsApp
+            </Button>
+
+            <Dialog>
+              <DialogTrigger asChild>
+                <Button
+                  size="lg"
+                  className="bg-gold text-background hover:bg-gold/90 font-medium text-lg px-12 py-6 w-full sm:w-auto"
+                >
+                  <BookOpen className="mr-2 h-5 w-5" />
+                  Book Now
+                </Button>
+              </DialogTrigger>
+              <DialogContent className="max-w-3xl p-0 overflow-hidden bg-transparent border-none">
+                <img src={classImage} alt="Booking Information" className="w-full h-auto rounded-lg shadow-2xl" />
+              </DialogContent>
+            </Dialog>
+          </div>
 
         </div>
       </section>

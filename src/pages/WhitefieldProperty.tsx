@@ -1,6 +1,7 @@
-import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import { ArrowLeft, Star, Users, BedDouble, Bath, MapPin, Wifi, Tv, Car, Trees, ChevronDown, ChevronRight, Phone, Mail, Clock, Shield, Dog, Lock, Sparkles, WashingMachine, Utensils, Building, X, Dumbbell, Gamepad2, ShieldCheck, PartyPopper, ChefHat } from "lucide-react";
+import { useEffect, useState, lazy, Suspense } from "react";
+import { Star, Users, BedDouble, Bath, MapPin, Wifi, Tv, Car, Trees, ChevronDown, ChevronRight, Phone, Mail, Clock, Shield, Dog, Lock, Sparkles, WashingMachine, Utensils, Building, X, Dumbbell, Gamepad2, ShieldCheck, PartyPopper, ChefHat, BookOpen } from "lucide-react";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import classImage from "@/assets/class.jpg";
 import { Button } from "@/components/ui/button";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { ThemeToggle } from "@/components/ThemeToggle";
@@ -8,15 +9,36 @@ import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { Footer } from "@/components/Footer";
 import { Navbar } from "@/components/Navbar";
 
-import heroImage from "@/assets/LivingRoom.png";
-import bedroomImage from "@/assets/Bedroom-sukis.png";
 import livingImage from "@/assets/LivingRoom.png";
+import exteriorImage from "@/assets/hero-exterior.jpg";
+const heroImage = livingImage;
+import bedroomImage from "@/assets/Bedroom-sukis.png";
+import bedroom2Image from "@/assets/Bedroom-2.png";
+import whitefieldBedroom from "@/assets/whitefield-bedroom.jpg";
+
+import commonArea1 from "@/assets/Common Area-1.png";
+import whitefieldLiving from "@/assets/whitefield-living.jpg";
+
 import diningImage from "@/assets/Dining-sukis.png";
+import kitchen2Image from "@/assets/Kitchen-2.png";
+import whitefieldDining from "@/assets/whitefield-dining.jpg";
+
 import gardenImage from "@/assets/Balconypatio.jpg";
+import balconyImage from "@/assets/Balcony.jpg";
+import whitefieldGarden from "@/assets/whitefield-garden.jpg";
+
 import bathroomImage from "@/assets/Master-sukis.png";
+
 import gymImage from "@/assets/gym_2.jpg";
+import gym1Image from "@/assets/gym_1.jpg";
+import yogaImage from "@/assets/yoga.png";
+
 import poolImage from "@/assets/pool.jpg";
-import { PropertyMap } from "@/components/PropertyMap";
+import movieImage from "@/assets/movie.png";
+import happyImage from "@/assets/happy.png";
+
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
+const PropertyMap = lazy(() => import("@/components/PropertyMap").then(m => ({ default: m.PropertyMap })));
 
 const amenities = [
   { icon: BedDouble, label: "4 King-Size Bedrooms" },
@@ -35,20 +57,50 @@ const amenities = [
   { icon: Gamepad2, label: "Foosball Table" },
   { icon: ChefHat, label: "Chef Services" },
   { icon: ShieldCheck, label: "24/7 CCTV Surveillance" },
-  { icon: PartyPopper, label: "Terrace Space - Party / Meeting / Conference Rooms" },
+  { icon: PartyPopper, label: "Terrace Space - Party - Conference Rooms" },
 ];
 
 const spaces = [
-  { img: bedroomImage, title: "King-Size Bedrooms", desc: "4 elegantly appointed bedrooms, each featuring king-size beds and private balconies with serene views." },
-  { img: livingImage, title: "Living Room", desc: "Spacious shared living area with comfortable sofas and a smart TV — perfect for unwinding." },
-  { img: diningImage, title: "Dining & Kitchen", desc: "A modern dining area alongside a fully equipped kitchen with microwave, toaster, and refrigerator." },
-  { img: gardenImage, title: "Patio", desc: "A lush private patio space for relaxation, morning coffee, or evening conversations." },
-  { img: gymImage, title: "Fitness Center", desc: "Access to our modern, fully-equipped gym to help you stay active during your stay." },
-  { img: poolImage, title: "Recreation Hub", desc: "Enjoy a game of pool or foosball in our sophisticated social and gaming area." },
+  {
+    img: bedroomImage,
+    title: "King-Size Bedrooms",
+    desc: "4 elegantly appointed bedrooms, each featuring king-size beds and private balconies with serene views.",
+    images: [bedroomImage, bedroom2Image, whitefieldBedroom]
+  },
+  {
+    img: livingImage,
+    title: "Living Room",
+    desc: "Spacious shared living area with comfortable sofas and a smart TV — perfect for unwinding.",
+    images: [livingImage, commonArea1, whitefieldLiving]
+  },
+  {
+    img: diningImage,
+    title: "Dining & Kitchen",
+    desc: "A modern dining area alongside a fully equipped kitchen with microwave, toaster, and refrigerator.",
+    images: [diningImage, kitchen2Image, whitefieldDining]
+  },
+  {
+    img: gardenImage,
+    title: "Patio",
+    desc: "A lush private patio space for relaxation, morning coffee, or evening conversations.",
+    images: [gardenImage, balconyImage, whitefieldGarden]
+  },
+  {
+    img: gymImage,
+    title: "Fitness Center",
+    desc: "Access to our modern, fully-equipped gym to help you stay active during your stay.",
+    images: [gymImage, gym1Image, yogaImage]
+  },
+  {
+    img: poolImage,
+    title: "Recreation Hub",
+    desc: "Enjoy a game of pool or foosball in our sophisticated social and gaming area.",
+    images: [poolImage, movieImage, happyImage]
+  },
 ];
 
 const galleryImages = [
-  { src: heroImage, alt: "Sukis Suites Whitefield Living Room", title: "Living Room" },
+  { src: exteriorImage, alt: "Sukis Suites Whitefield Exterior View", title: "Exterior View" },
   { src: bedroomImage, alt: "Luxury bedroom in Sukis Suites", title: "Bedroom" },
   { src: livingImage, alt: "Spacious and modern living area", title: "Living Room" },
   { src: diningImage, alt: "Modern kitchen and dining space", title: "Dining & Kitchen" },
@@ -99,7 +151,7 @@ const WhitefieldProperty = () => {
 
           <div className="flex flex-wrap items-center justify-center gap-4 mb-10 animate-fade-in">
             {[
-              { icon: Users, text: "8", sub: "guests" },
+              { icon: Users, text: "2 - 12", sub: "guests" },
               { icon: BedDouble, text: "4", sub: "bedrooms" },
               { icon: Bath, text: "4", sub: "bathrooms" },
             ].map((stat, i) => (
@@ -212,13 +264,13 @@ const WhitefieldProperty = () => {
             {galleryImages.map((img, i) => (
               <div
                 key={i}
-                className={`relative overflow-hidden rounded-xl cursor-pointer group ${i === 0 ? "col-span-2 row-span-2" : ""}`}
+                className={`relative overflow-hidden rounded-xl cursor-pointer group h-64 lg:h-72 ${i === 0 ? "md:col-span-2" : ""}`}
                 onClick={() => { setLightboxIndex(i); setLightboxOpen(true); }}
               >
                 <img
                   src={img.src}
                   alt={img.alt}
-                  className={`w-full object-cover group-hover:scale-105 transition-transform duration-500 ${i === 0 ? "h-full min-h-[300px] lg:min-h-[500px]" : "h-48 lg:h-56"}`}
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                 />
                 <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors duration-300 flex items-end">
                   <span className="text-white font-medium text-sm p-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -268,14 +320,47 @@ const WhitefieldProperty = () => {
             <h2 className="font-playfair text-3xl lg:text-4xl font-bold text-foreground mb-2">Explore the Spaces</h2>
             <div className="w-20 h-1 bg-gold"></div>
           </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {spaces.map((space, i) => (
-              <div key={i} className="group relative overflow-hidden rounded-2xl h-80 cursor-pointer">
-                <img src={space.img} alt={space.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-                <div className="absolute bottom-0 left-0 right-0 p-5">
-                  <h3 className="font-playfair text-lg font-bold text-white mb-1">{space.title}</h3>
-                  <p className="text-white/70 text-xs leading-relaxed line-clamp-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">{space.desc}</p>
+              <div key={i} className="group flex flex-col">
+                <Dialog>
+                  <DialogTrigger asChild>
+                    <div className="relative aspect-[4/3] overflow-hidden rounded-2xl mb-4 cursor-pointer">
+                      <img
+                        src={space.img}
+                        alt={space.title}
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                      />
+                      <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                        <span className="text-white font-medium px-4 py-2 border border-white rounded-full backdrop-blur-sm">View Details</span>
+                      </div>
+                    </div>
+                  </DialogTrigger>
+                  <DialogContent className="max-w-4xl p-0 bg-transparent border-none overflow-hidden">
+                    <Carousel className="w-full" opts={{ loop: true }}>
+                      <CarouselContent>
+                        {space.images.map((image, idx) => (
+                          <CarouselItem key={idx}>
+                            <div className="relative aspect-video lg:aspect-[16/9] overflow-hidden rounded-xl">
+                              <img src={image} alt={`${space.title} - ${idx + 1}`} className="w-full h-full object-cover" />
+                            </div>
+                          </CarouselItem>
+                        ))}
+                      </CarouselContent>
+                      <div className="hidden md:block">
+                        <CarouselPrevious className="left-4 bg-white/10 hover:bg-white/20 border-white/20 text-white" />
+                        <CarouselNext className="right-4 bg-white/10 hover:bg-white/20 border-white/20 text-white" />
+                      </div>
+                    </Carousel>
+                    <div className="p-6 bg-background/95 backdrop-blur-md">
+                      <h3 className="font-playfair text-2xl font-bold text-foreground mb-2">{space.title}</h3>
+                      <p className="text-muted-foreground leading-relaxed">{space.desc}</p>
+                    </div>
+                  </DialogContent>
+                </Dialog>
+                <div className="flex-1">
+                  <h3 className="font-playfair text-xl font-bold text-foreground mb-2">{space.title}</h3>
+                  <p className="text-muted-foreground text-sm leading-relaxed">{space.desc}</p>
                 </div>
               </div>
             ))}
@@ -351,7 +436,9 @@ const WhitefieldProperty = () => {
       </section>
 
       {/* Location & Nearby */}
-      <PropertyMap />
+      <Suspense fallback={<div className="h-[400px] flex items-center justify-center bg-secondary/30">Loading map...</div>}>
+        <PropertyMap />
+      </Suspense>
 
       {/* Contact / Booking CTA — Full-width gradient banner */}
       <section id="contact" className="relative py-24 px-4 overflow-hidden">
@@ -385,13 +472,30 @@ const WhitefieldProperty = () => {
               <span>sukis.whitefield@gmail.com</span>
             </a>
           </div>
-          <Button
-            size="lg"
-            className="bg-gold text-background hover:bg-gold/90 font-medium text-lg px-12 py-6"
-            onClick={() => window.open('https://www.airbnb.co.in/', '_blank')}
-          >
-            Book on Airbnb
-          </Button>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <Button
+              size="lg"
+              className="bg-gold text-background hover:bg-gold/90 font-medium text-lg px-12 py-6 w-full sm:w-auto"
+              onClick={() => window.open('https://www.airbnb.co.in/', '_blank')}
+            >
+              Book on Airbnb
+            </Button>
+
+            <Dialog>
+              <DialogTrigger asChild>
+                <Button
+                  size="lg"
+                  className="bg-gold text-background hover:bg-gold/90 font-medium text-lg px-12 py-6 w-full sm:w-auto"
+                >
+                  <BookOpen className="mr-2 h-5 w-5" />
+                  Book Now
+                </Button>
+              </DialogTrigger>
+              <DialogContent className="max-w-3xl p-0 overflow-hidden bg-transparent border-none">
+                <img src={classImage} alt="Booking Information" className="w-full h-auto rounded-lg shadow-2xl" />
+              </DialogContent>
+            </Dialog>
+          </div>
         </div>
       </section>
 

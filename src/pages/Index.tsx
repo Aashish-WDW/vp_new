@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, lazy, Suspense } from "react";
 import { Hero } from "@/components/Hero";
 import { PropertySection } from "@/components/PropertySection";
 import { Amenities } from "@/components/Amenities";
@@ -11,11 +11,10 @@ import { FloatingCTA } from "@/components/FloatingCTA";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { Navbar } from "@/components/Navbar";
 import { ImageGallery } from "@/components/ImageGallery";
-import { VirtualTour } from "@/components/VirtualTour";
-import { InstagramFeed } from "@/components/InstagramFeed";
 import { AudioPlayer } from "@/components/AudioPlayer";
-import { FloorPlan } from "@/components/FloorPlan";
-import { PropertyMap } from "@/components/PropertyMap";
+const VirtualTour = lazy(() => import("@/components/VirtualTour").then(m => ({ default: m.VirtualTour })));
+const InstagramFeed = lazy(() => import("@/components/InstagramFeed").then(m => ({ default: m.InstagramFeed })));
+const PropertyMap = lazy(() => import("@/components/PropertyMap").then(m => ({ default: m.PropertyMap })));
 
 import livingRoomImage from "@/assets/Living.jpg";
 import masterBedroomImage from "@/assets/Master-Bedroom-2.jpg";
@@ -74,7 +73,9 @@ const Index = () => {
 
       <ImageGallery images={galleryImages} />
 
-      <VirtualTour />
+      <Suspense fallback={<div className="h-[400px] flex items-center justify-center bg-secondary/10">Loading tour...</div>}>
+        <VirtualTour />
+      </Suspense>
 
       <div id="explore">
         <PropertySection
@@ -177,11 +178,15 @@ const Index = () => {
 
       {/* <FloorPlan /> */}
 
-      <PropertyMap />
+      <Suspense fallback={<div className="h-[400px] flex items-center justify-center bg-secondary/10">Loading map...</div>}>
+        <PropertyMap />
+      </Suspense>
 
       <Testimonials />
 
-      <InstagramFeed />
+      <Suspense fallback={<div className="h-[400px] flex items-center justify-center bg-secondary/10">Loading feed...</div>}>
+        <InstagramFeed />
+      </Suspense>
 
       <BookingCTA id="contact" />
 
