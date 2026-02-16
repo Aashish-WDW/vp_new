@@ -45,9 +45,11 @@ import gym3Image from "@/assets/sukis/gym/4.jpg";
 import gym4Image from "@/assets/sukis/gym/6.jpg";
 
 import poolImage from "@/assets/pool.jpg";
-import pool2Image from "@/assets/sukis/pool/1.jpg";
-import pool3Image from "@/assets/sukis/pool/2.jpg";
-import pool4Image from "@/assets/sukis/pool/3.jpg";
+import pool2Image from "@/assets/sukis/pool/2.jpg";
+import pool3Image from "@/assets/sukis/pool/3.jpg";
+import pool4Image from "@/assets/sukis/pool/4.jpg";
+import pool5Image from "@/assets/sukis/pool/5.jpg";
+import pool6Image from "@/assets/sukis/pool/6.jpg";
 
 
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
@@ -109,7 +111,7 @@ const spaces = [
     img: poolImage,
     title: "Recreation Hub",
     desc: "Enjoy a game of pool or foosball in our sophisticated social and gaming area.",
-    images: [poolImage, pool2Image, pool3Image, pool4Image]
+    images: [poolImage, pool2Image, pool3Image, pool4Image, pool5Image, pool6Image]
   },
 ];
 
@@ -122,6 +124,8 @@ const galleryImages = [
   { src: bathroomImage, alt: "Master bathroom with premium fittings", title: "Master Bathroom" },
   { src: gymImage, alt: "Modern fitness center facilities", title: "Fitness Center" },
   { src: poolImage, alt: "Sophisticated recreation and pool area", title: "Recreation Hub" },
+  { src: pool2Image, alt: "Pool table view 2", title: "Game Lounge" },
+  { src: pool3Image, alt: "Pool table view 3", title: "Social Area" },
 ];
 
 const WhitefieldProperty = () => {

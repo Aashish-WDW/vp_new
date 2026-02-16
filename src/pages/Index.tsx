@@ -23,6 +23,8 @@ import bathroomImage from "@/assets/Master-Washroom.jpg";
 import diningArea from "@/assets/Dining.jpg";
 import gymImage from "@/assets/gym_1.jpg";
 import poolImage from "@/assets/pool.jpg";
+import pool2Image from "@/assets/sukis/pool/2.jpg";
+import pool3Image from "@/assets/sukis/pool/3.jpg";
 
 const Index = () => {
   useEffect(() => {
@@ -58,6 +60,7 @@ const Index = () => {
     { src: bathroomImage, alt: "Luxury bathroom", title: "Spa Bathroom" },
     { src: gymImage, alt: "Modern fitness center", title: "Fitness Center" },
     { src: poolImage, alt: "Elite pool table lounge", title: "Game Lounge" },
+    { src: pool2Image, alt: "Sukis Pool Lounge View", title: "Recreation Hub" },
   ];
 
   return (
