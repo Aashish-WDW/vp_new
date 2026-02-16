@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Calendar, Mail, Phone, BookOpen } from "lucide-react";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
-import classImage from "@/assets/class.jpg";
+import classImage from "@/assets/QR.jpeg";
 
 interface BookingCTAProps {
   id?: string;
@@ -55,7 +55,7 @@ export function BookingCTA({ id }: BookingCTAProps) {
                 Book Now
               </Button>
             </DialogTrigger>
-            <DialogContent className="max-w-3xl p-0 overflow-hidden bg-transparent border-none">
+            <DialogContent className="max-w-sm p-0 overflow-hidden bg-transparent border-none">
               <img src={classImage} alt="Booking Information" className="w-full h-auto rounded-lg shadow-2xl" />
             </DialogContent>
           </Dialog>

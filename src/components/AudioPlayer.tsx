@@ -33,12 +33,12 @@ export function AudioPlayer() {
         muted={isMuted}
         src="https://cdn.pixabay.com/audio/2022/05/27/audio_1808fbf07a.mp3"
       />
-      
+
       {isVisible && (
         <Button
           variant="ghost"
           size="icon"
-          className="fixed bottom-24 right-4 z-40 w-12 h-12 rounded-full bg-background/80 backdrop-blur-sm border border-gold/30 hover:bg-gold/20 shadow-elegant animate-fade-in"
+          className="fixed bottom-28 right-8 z-40 w-12 h-12 rounded-full bg-background/80 backdrop-blur-sm border border-gold/30 hover:bg-gold/20 shadow-elegant animate-fade-in"
           onClick={toggleAudio}
           aria-label={isMuted ? "Unmute ambient audio" : "Mute ambient audio"}
         >

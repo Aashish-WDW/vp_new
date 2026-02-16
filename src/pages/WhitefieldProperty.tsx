@@ -1,7 +1,7 @@
 import { useEffect, useState, lazy, Suspense } from "react";
 import { Star, Users, BedDouble, Bath, MapPin, Wifi, Tv, Car, Trees, ChevronDown, ChevronRight, Phone, Mail, Clock, Shield, Dog, Lock, Sparkles, WashingMachine, Utensils, Building, X, Dumbbell, Gamepad2, ShieldCheck, PartyPopper, ChefHat, BookOpen } from "lucide-react";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
-import classImage from "@/assets/class.jpg";
+import classImage from "@/assets/QR.jpeg";
 import { Button } from "@/components/ui/button";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { ThemeToggle } from "@/components/ThemeToggle";
@@ -13,15 +13,24 @@ import livingImage from "@/assets/LivingRoom.png";
 import exteriorImage from "@/assets/hero-exterior.jpg";
 const heroImage = livingImage;
 import bedroomImage from "@/assets/Bedroom-sukis.png";
-import bedroom2Image from "@/assets/Bedroom-2.png";
-import whitefieldBedroom from "@/assets/whitefield-bedroom.jpg";
+import bedroomImage1 from "@/assets/sukis/bedroom/Bedroom-1(2).png";
+import bedroomImage2 from "@/assets/sukis/bedroom/Bedroom-2(2).png";
+import bedroomImage3 from "@/assets/sukis/bedroom/Bedroom-2(4).png";
+import bedroomImage4 from "@/assets/sukis/bedroom/Bedroom-3.png";
+import bedroomImage5 from "@/assets/sukis/bedroom/Master Bedroom-1(2).png";
+import bedroomImage6 from "@/assets/sukis/bedroom/Master Bedroom-1(4).png";
+import bedroomImage7 from "@/assets/sukis/bedroom/Master Bedroom-1(5).png";
+import bedroomImage8 from "@/assets/sukis/bedroom/Master Bedroom-1.png";
 
 import commonArea1 from "@/assets/Common Area-1.png";
 import whitefieldLiving from "@/assets/whitefield-living.jpg";
+import commonArea from "@/assets/Living Room-1.png";
 
 import diningImage from "@/assets/Dining-sukis.png";
 import kitchen2Image from "@/assets/Kitchen-2.png";
-import whitefieldDining from "@/assets/whitefield-dining.jpg";
+import kitchen3Image from "@/assets/sukis/Kitchen.png";
+import kitchen4Image from "@/assets/sukis/dining/Dining2.png";
+import kitchen5Image from "@/assets/sukis/dining/Dining3.png";
 
 import gardenImage from "@/assets/Balconypatio.jpg";
 import balconyImage from "@/assets/Balcony.jpg";
@@ -31,18 +40,23 @@ import bathroomImage from "@/assets/Master-sukis.png";
 
 import gymImage from "@/assets/gym_2.jpg";
 import gym1Image from "@/assets/gym_1.jpg";
-import yogaImage from "@/assets/yoga.png";
+import gym2Image from "@/assets/sukis/gym/2.jpg";
+import gym3Image from "@/assets/sukis/gym/4.jpg";
+import gym4Image from "@/assets/sukis/gym/6.jpg";
 
 import poolImage from "@/assets/pool.jpg";
-import movieImage from "@/assets/movie.png";
-import happyImage from "@/assets/happy.png";
+import pool2Image from "@/assets/sukis/pool/1.jpg";
+import pool3Image from "@/assets/sukis/pool/2.jpg";
+import pool4Image from "@/assets/sukis/pool/3.jpg";
+
 
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 const PropertyMap = lazy(() => import("@/components/PropertyMap").then(m => ({ default: m.PropertyMap })));
+const VirtualTour = lazy(() => import("@/components/VirtualTour").then(m => ({ default: m.VirtualTour })));
 
 const amenities = [
-  { icon: BedDouble, label: "4 King-Size Bedrooms" },
-  { icon: Bath, label: "4 Full Bathrooms" },
+  { icon: BedDouble, label: "12 King-Size Bedrooms" },
+  { icon: Bath, label: "12 Full Bathrooms" },
   { icon: Tv, label: "Smart TV" },
   { icon: Wifi, label: "High-Speed WiFi" },
   { icon: WashingMachine, label: "Washing Machine" },
@@ -65,37 +79,37 @@ const spaces = [
     img: bedroomImage,
     title: "King-Size Bedrooms",
     desc: "4 elegantly appointed bedrooms, each featuring king-size beds and private balconies with serene views.",
-    images: [bedroomImage, bedroom2Image, whitefieldBedroom]
+    images: [bedroomImage, bedroomImage1, bedroomImage2, bedroomImage3, bedroomImage4, bedroomImage5, bedroomImage6, bedroomImage7, bedroomImage8]
   },
   {
     img: livingImage,
     title: "Living Room",
     desc: "Spacious shared living area with comfortable sofas and a smart TV — perfect for unwinding.",
-    images: [livingImage, commonArea1, whitefieldLiving]
+    images: [livingImage, commonArea1, commonArea]
   },
   {
     img: diningImage,
     title: "Dining & Kitchen",
     desc: "A modern dining area alongside a fully equipped kitchen with microwave, toaster, and refrigerator.",
-    images: [diningImage, kitchen2Image, whitefieldDining]
+    images: [diningImage, kitchen2Image, kitchen3Image, kitchen4Image, kitchen5Image]
   },
   {
     img: gardenImage,
     title: "Patio",
     desc: "A lush private patio space for relaxation, morning coffee, or evening conversations.",
-    images: [gardenImage, balconyImage, whitefieldGarden]
+    images: [gardenImage, balconyImage]
   },
   {
     img: gymImage,
     title: "Fitness Center",
     desc: "Access to our modern, fully-equipped gym to help you stay active during your stay.",
-    images: [gymImage, gym1Image, yogaImage]
+    images: [gymImage, gym1Image, gym2Image, gym3Image, gym4Image]
   },
   {
     img: poolImage,
     title: "Recreation Hub",
     desc: "Enjoy a game of pool or foosball in our sophisticated social and gaming area.",
-    images: [poolImage, movieImage, happyImage]
+    images: [poolImage, pool2Image, pool3Image, pool4Image]
   },
 ];
 
@@ -151,9 +165,9 @@ const WhitefieldProperty = () => {
 
           <div className="flex flex-wrap items-center justify-center gap-4 mb-10 animate-fade-in">
             {[
-              { icon: Users, text: "2 - 12", sub: "guests" },
-              { icon: BedDouble, text: "4", sub: "bedrooms" },
-              { icon: Bath, text: "4", sub: "bathrooms" },
+              { icon: Users, text: "2 - 30", sub: "guests" },
+              { icon: BedDouble, text: "12", sub: "bedrooms" },
+              { icon: Bath, text: "12", sub: "bathrooms" },
             ].map((stat, i) => (
               <div key={i} className="flex items-center gap-2 bg-white/10 dark:bg-black/20 backdrop-blur-sm rounded-lg px-3 py-2 border border-white/10 dark:border-white/5">
                 <stat.icon className="h-4 w-4 text-gold" />
@@ -252,6 +266,11 @@ const WhitefieldProperty = () => {
           </div>
         </div>
       </section>
+
+      {/* Virtual Tour */}
+      <Suspense fallback={<div className="h-[400px] flex items-center justify-center bg-secondary/10">Loading tour...</div>}>
+        <VirtualTour url="https://realsee.ai/LNwwVK4W?theme=minimalist&unbranded=1" />
+      </Suspense>
 
       {/* Gallery — Bento grid layout */}
       <section id="gallery" className="py-20 px-4 bg-secondary/30">
@@ -491,7 +510,7 @@ const WhitefieldProperty = () => {
                   Book Now
                 </Button>
               </DialogTrigger>
-              <DialogContent className="max-w-3xl p-0 overflow-hidden bg-transparent border-none">
+              <DialogContent className="max-w-sm p-0 overflow-hidden bg-transparent border-none">
                 <img src={classImage} alt="Booking Information" className="w-full h-auto rounded-lg shadow-2xl" />
               </DialogContent>
             </Dialog>

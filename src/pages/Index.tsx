@@ -13,7 +13,6 @@ import { Navbar } from "@/components/Navbar";
 import { ImageGallery } from "@/components/ImageGallery";
 import { AudioPlayer } from "@/components/AudioPlayer";
 const VirtualTour = lazy(() => import("@/components/VirtualTour").then(m => ({ default: m.VirtualTour })));
-const InstagramFeed = lazy(() => import("@/components/InstagramFeed").then(m => ({ default: m.InstagramFeed })));
 const PropertyMap = lazy(() => import("@/components/PropertyMap").then(m => ({ default: m.PropertyMap })));
 
 import livingRoomImage from "@/assets/Living.jpg";
@@ -183,11 +182,6 @@ const Index = () => {
       </Suspense>
 
       <Testimonials />
-
-      <Suspense fallback={<div className="h-[400px] flex items-center justify-center bg-secondary/10">Loading feed...</div>}>
-        <InstagramFeed />
-      </Suspense>
-
       <BookingCTA id="contact" />
 
       <Footer />

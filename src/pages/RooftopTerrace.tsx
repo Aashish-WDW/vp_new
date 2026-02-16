@@ -12,14 +12,18 @@ import {
   ChevronRight, X, Star, PartyPopper, MapPin, Gamepad2, BookOpen
 } from "lucide-react";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
-import classImage from "@/assets/class.jpg";
+import classImage from "@/assets/QR.jpeg";
 
-import heroImage from "@/assets/terracemain.jpg";
-import nightImage from "@/assets/rooftop-night.jpg";
-import bbqImage from "@/assets/rooftop-bbq.jpg";
-import diningImage from "@/assets/rooftop-dining.jpg";
-import loungeImage from "@/assets/rooftop-lounge.jpg";
-import cookingImage from "@/assets/cooking.jpg";
+import heroImage from "@/assets/terracce/1 (3).png";
+import heroImageMain from "@/assets/terracce/terracemain.jpg";
+import nightImage from "@/assets/terracce/movie.png";
+import bbqImage from "@/assets/terracce/yoga.png";
+import diningImage from "@/assets/terracce/happy.png";
+import loungeImage from "@/assets/terracce/3.png";
+import cookingImage from "@/assets/terracce/cooking.jpg";
+import extraGallery1 from "@/assets/terracce/class.jpg";
+import extraGallery2 from "@/assets/terracce/3 (2).png";
+import extraGallery3 from "@/assets/terracce/Gemini_Generated_Image_k6deuhk6deuhk6de.png";
 const PropertyMap = lazy(() => import("@/components/PropertyMap").then(m => ({ default: m.PropertyMap })));
 
 const primaryFeatures = [
@@ -115,6 +119,9 @@ const galleryImages = [
   { src: diningImage, alt: "Happy moments and celebrations", title: "Happy Hour" },
   { src: loungeImage, alt: "Classy lounge and seating", title: "Lounge Area" },
   { src: cookingImage, alt: "Outdoor cooking and preparation", title: "Cooking Zone" },
+  { src: extraGallery1, alt: "Celebration setup", title: "Celebration" },
+  { src: extraGallery2, alt: "Terrace view", title: "Panoramic View" },
+  { src: extraGallery3, alt: "Artistic terrace shot", title: "Atmosphere" },
 ];
 
 const eventTypes = [
@@ -149,7 +156,7 @@ const RooftopTerrace = () => {
 
       {/* Hero — Full-bleed cinematic with overlay text */}
       <section id="overview" className="relative h-screen w-full overflow-hidden">
-        <img src={heroImage} alt="The Terrace Canvas Party Hall" className="w-full h-full object-cover" />
+        <img src={heroImageMain} alt="The Terrace Canvas Party Hall" className="w-full h-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-black/20" />
         <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4">
           <span className="inline-block px-4 py-1.5 bg-gold/20 border border-gold/40 rounded-full text-gold text-xs font-semibold tracking-[0.2em] uppercase mb-6 animate-fade-in">
@@ -483,7 +490,7 @@ const RooftopTerrace = () => {
                   Book Now
                 </Button>
               </DialogTrigger>
-              <DialogContent className="max-w-3xl p-0 overflow-hidden bg-transparent border-none">
+              <DialogContent className="max-w-sm p-0 overflow-hidden bg-transparent border-none">
                 <img src={classImage} alt="Booking Information" className="w-full h-auto rounded-lg shadow-2xl" />
               </DialogContent>
             </Dialog>

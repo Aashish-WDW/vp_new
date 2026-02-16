@@ -1,8 +1,8 @@
 import logo from "@/assets/logo.png";
 import sukisLogo from "@/assets/sukis-suites.png";
-import terraceLogo from "@/assets/terrace.png";
+import terraceLogo from "@/assets/terracce/terrace.png";
 import heroExterior from "@/assets/hero-exterior.jpg";
-import rooftopHero from "@/assets/rooftop-hero.jpg";
+import rooftopHero from "@/assets/terracce/1 (3).png";
 import whitefieldHero from "@/assets/whitefield-hero.jpg";
 
 

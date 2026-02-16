@@ -24,6 +24,7 @@ const sectionsByPage: Record<string, { main: { name: string; id: string }[]; ext
   "/": {
     main: [
       { name: "Overview", id: "overview" },
+      { name: "Virtual Tour", id: "virtual-tour" },
       { name: "Gallery", id: "gallery" },
       { name: "Spaces", id: "spaces" },
     ],
@@ -120,11 +121,19 @@ export function Navbar({ propertyPage }: NavbarProps) {
                 </span>
               </div>
 
-              {/* Property Switcher */}
+              {/* Property Switcher — hidden on mobile, use hamburger menu instead */}
               <div
-                className="relative"
-                onMouseEnter={() => setIsPropertySwitcherOpen(true)}
-                onMouseLeave={() => setIsPropertySwitcherOpen(false)}
+                className="relative hidden lg:block"
+                onMouseEnter={() => {
+                  if (window.matchMedia('(hover: hover)').matches) {
+                    setIsPropertySwitcherOpen(true);
+                  }
+                }}
+                onMouseLeave={() => {
+                  if (window.matchMedia('(hover: hover)').matches) {
+                    setIsPropertySwitcherOpen(false);
+                  }
+                }}
               >
                 <button
                   className={`flex items-center gap-2 px-3 py-1.5 rounded-full border transition-all duration-300 ${isScrolled
@@ -182,8 +191,16 @@ export function Navbar({ propertyPage }: NavbarProps) {
               {/* More Dropdown */}
               <div
                 className="relative"
-                onMouseEnter={() => setIsDropdownOpen(true)}
-                onMouseLeave={() => setIsDropdownOpen(false)}
+                onMouseEnter={() => {
+                  if (window.matchMedia('(hover: hover)').matches) {
+                    setIsDropdownOpen(true);
+                  }
+                }}
+                onMouseLeave={() => {
+                  if (window.matchMedia('(hover: hover)').matches) {
+                    setIsDropdownOpen(false);
+                  }
+                }}
               >
                 <button
                   className={`flex items-center gap-1 px-4 py-2 text-sm font-medium rounded-md transition-colors duration-300 ${isScrolled
@@ -230,7 +247,7 @@ export function Navbar({ propertyPage }: NavbarProps) {
 
       {/* Mobile Menu Overlay */}
       {isMobileMenuOpen && (
-        <div className="fixed inset-0 z-40 lg:hidden">
+        <div className="fixed inset-0 z-[45] lg:hidden">
           <div
             className="absolute inset-0 bg-black/50 backdrop-blur-sm"
             onClick={() => setIsMobileMenuOpen(false)}

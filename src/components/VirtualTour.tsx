@@ -1,7 +1,12 @@
 import { useState } from "react";
 
-export function VirtualTour() {
-  const tourUrl = "https://realsee.ai/DMLL2aad?shareCode=0y17rXZQ&entry=share";
+interface VirtualTourProps {
+  url?: string;
+}
+
+export function VirtualTour({ url }: VirtualTourProps) {
+  const defaultTourUrl = "https://realsee.ai/DMLL2aad?shareCode=0y17rXZQ&entry=share";
+  const tourUrl = url || defaultTourUrl;
 
   return (
     <section id="virtual-tour" className="py-20 lg:py-32 px-4">
