@@ -121,9 +121,9 @@ export function Navbar({ propertyPage }: NavbarProps) {
                 </span>
               </div>
 
-              {/* Property Switcher — hidden on mobile, use hamburger menu instead */}
+              {/* Property Switcher */}
               <div
-                className="relative hidden lg:block"
+                className="relative"
                 onMouseEnter={() => {
                   if (window.matchMedia('(hover: hover)').matches) {
                     setIsPropertySwitcherOpen(true);
@@ -143,12 +143,12 @@ export function Navbar({ propertyPage }: NavbarProps) {
                   onClick={() => setIsPropertySwitcherOpen((p) => !p)}
                   aria-label="Switch property"
                 >
-                  <span className="text-xs font-semibold uppercase tracking-wider">Explore More</span>
+                  <span className="text-xs font-semibold uppercase tracking-wider">Explore</span>
                   <ChevronDown className={`h-3 w-3 transition-transform duration-300 ${isPropertySwitcherOpen ? "rotate-180" : ""}`} />
                 </button>
 
                 {isPropertySwitcherOpen && (
-                  <div className="absolute left-0 pt-2 w-64 z-50 animate-fade-in">
+                  <div className="fixed left-1/2 -translate-x-1/2 top-20 w-64 z-50 animate-fade-in lg:absolute lg:left-0 lg:translate-x-0 lg:top-auto pt-2">
                     <div className="bg-background/95 backdrop-blur-md border border-border rounded-xl shadow-elegant py-3">
                       <p className="px-4 pb-2 text-[10px] font-bold uppercase tracking-widest text-gold">Other Properties</p>
                       {properties.filter(p => p.path !== currentPath).map((property) => (
