@@ -124,8 +124,6 @@ const galleryImages = [
   { src: bathroomImage, alt: "Master bathroom with premium fittings", title: "Master Bathroom" },
   { src: gymImage, alt: "Modern fitness center facilities", title: "Fitness Center" },
   { src: poolImage, alt: "Sophisticated recreation and pool area", title: "Recreation Hub" },
-  { src: pool2Image, alt: "Pool table view 2", title: "Game Lounge" },
-  { src: pool3Image, alt: "Pool table view 3", title: "Social Area" },
 ];
 
 const WhitefieldProperty = () => {
