@@ -45,7 +45,6 @@ import gym3Image from "@/assets/sukis/gym/4.jpg";
 import gym4Image from "@/assets/sukis/gym/6.jpg";
 
 import poolImage from "@/assets/pool.jpg";
-import pool2Image from "@/assets/sukis/pool/2.jpg";
 import pool3Image from "@/assets/sukis/pool/3.jpg";
 import pool4Image from "@/assets/sukis/pool/4.jpg";
 import pool5Image from "@/assets/sukis/pool/5.jpg";
@@ -111,7 +110,7 @@ const spaces = [
     img: poolImage,
     title: "Recreation Hub",
     desc: "Enjoy a game of pool or foosball in our sophisticated social and gaming area.",
-    images: [poolImage, pool2Image, pool3Image, pool4Image, pool5Image, pool6Image]
+    images: [poolImage, pool3Image, pool4Image, pool5Image, pool6Image]
   },
 ];
 
