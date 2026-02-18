@@ -270,7 +270,7 @@ const WhitefieldProperty = () => {
 
       {/* Virtual Tour */}
       <Suspense fallback={<div className="h-[400px] flex items-center justify-center bg-secondary/10">Loading tour...</div>}>
-        <VirtualTour url="https://realsee.ai/LNwwVK4W?theme=minimalist&unbranded=1" />
+        <VirtualTour url="https://realsee.ai/LNwwVKkj?theme=minimalist&unbranded=1&source=oversea_link" />
       </Suspense>
 
       {/* Gallery — Bento grid layout */}
